@@ -1,0 +1,4 @@
+github "antitypical/Result"
+github "cbguder/CBGPromise"
+github "younata/FutureHTTP"
+github "SwiftyJSON/SwiftyJSON"
