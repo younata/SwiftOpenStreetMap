@@ -4,19 +4,19 @@ import CBGPromise
 import SwiftyJSON
 import Result
 
-protocol OverpassService {
+public protocol OverpassService {
 }
 
-struct DefaultOverpassService: OverpassService {
+public struct DefaultOverpassService: OverpassService {
     private let baseURL: URL
     private let httpClient: HTTPClient
 
-    init(baseURL: URL, httpClient: HTTPClient) {
+    public init(baseURL: URL, httpClient: HTTPClient) {
         self.baseURL = baseURL
         self.httpClient = httpClient
     }
 
-    func query(_ query: String) -> Future<Result<OverpassResponse, OverpassServiceError>> {
+    public func query(_ query: String) -> Future<Result<OverpassResponse, OverpassServiceError>> {
         var request = URLRequest(url: self.baseURL)
         request.httpMethod = "POST"
         request.httpBody = query.data(using: .utf8)

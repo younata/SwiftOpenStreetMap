@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "897F0DF21E9690CA007BF224"
-               BuildableName = "SwiftOpenStreetMac.framework"
+               BuildableName = "SwiftOpenStreetMap.framework"
                BlueprintName = "SwiftOpenStreetMac"
                ReferencedContainer = "container:SwiftOpenStreetMap.xcodeproj">
             </BuildableReference>
@@ -33,7 +33,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "897F0DFA1E9690CA007BF224"
-               BuildableName = "SwiftOpenStreetMacTests.xctest"
+               BuildableName = "SwiftOpenStreetMapTests.xctest"
                BlueprintName = "SwiftOpenStreetMacTests"
                ReferencedContainer = "container:SwiftOpenStreetMap.xcodeproj">
             </BuildableReference>
@@ -43,7 +43,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "897F0DF21E9690CA007BF224"
-            BuildableName = "SwiftOpenStreetMac.framework"
+            BuildableName = "SwiftOpenStreetMap.framework"
             BlueprintName = "SwiftOpenStreetMac"
             ReferencedContainer = "container:SwiftOpenStreetMap.xcodeproj">
          </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "897F0DF21E9690CA007BF224"
-            BuildableName = "SwiftOpenStreetMac.framework"
+            BuildableName = "SwiftOpenStreetMap.framework"
             BlueprintName = "SwiftOpenStreetMac"
             ReferencedContainer = "container:SwiftOpenStreetMap.xcodeproj">
          </BuildableReference>
@@ -83,7 +83,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "897F0DF21E9690CA007BF224"
-            BuildableName = "SwiftOpenStreetMac.framework"
+            BuildableName = "SwiftOpenStreetMap.framework"
             BlueprintName = "SwiftOpenStreetMac"
             ReferencedContainer = "container:SwiftOpenStreetMap.xcodeproj">
          </BuildableReference>
