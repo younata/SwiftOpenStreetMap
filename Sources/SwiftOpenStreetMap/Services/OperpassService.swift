@@ -29,7 +29,7 @@ public struct DefaultOverpassService: OverpassService {
                 }
                 switch (status) {
                 case .ok:
-                    let json = JSON(rawData: response.body)
+                    let json = JSON(data: response.body)
                     if let overpassResponse = json.overpassResponse {
                         return .success(overpassResponse)
                     } else {

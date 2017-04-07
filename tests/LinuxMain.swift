@@ -1,3 +1,4 @@
+import XCTest
 import Quick
 import Nimble
 
@@ -6,9 +7,11 @@ import Nimble
 Quick.QCKMain([
         ModelsTest.self,
         OverpassServiceTest.self,
+        OverpassServiceIntegrationTest.self,
     ],
     testCases: [
         testCase(ModelsTest.allTests),
         testCase(OverpassServiceTest.allTests),
+        testCase(OverpassServiceIntegrationTest.allTests),
     ]
 )
