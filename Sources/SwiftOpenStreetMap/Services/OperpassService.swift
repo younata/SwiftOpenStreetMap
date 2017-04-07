@@ -19,7 +19,7 @@ public struct DefaultOverpassService: OverpassService {
     public func query(_ query: String) -> Future<Result<OverpassResponse, OverpassServiceError>> {
         var request = URLRequest(url: self.baseURL)
         request.httpMethod = "POST"
-        request.httpBody = query.data(using: .utf8)
+        request.httpBody = self.format(query: query).data(using: .utf8)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         return self.httpClient.request(request).map { result -> Result<OverpassResponse, OverpassServiceError> in
             switch result {
@@ -47,6 +47,14 @@ public struct DefaultOverpassService: OverpassService {
             case .failure(let error):
                 return .failure(.client(error))
             }
+        }
+    }
+
+    private func format(query: String) -> String {
+        if query.hasSuffix(";") {
+            return "[out:json];\(query)out;"
+        } else {
+            return "[out:json];\(query);out;"
         }
     }
 }

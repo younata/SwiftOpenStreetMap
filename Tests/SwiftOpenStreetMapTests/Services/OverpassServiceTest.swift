@@ -42,7 +42,24 @@ class OverpassServiceTest: QuickSpec {
                 expect(urlRequest?.allHTTPHeaderFields?["Accept"]) == "application/json"
 
                 if let bodyData = urlRequest?.httpBody, let body = String(data: bodyData, encoding: .utf8) {
-                    expect(body) == "a query"
+                    expect(body) == "[out:json];a query;out;"
+                }
+            }
+
+            it("strips out the trailing `;` if a query is passed with that") {
+                _ = subject.query("a query;")
+
+                expect(httpClient.requestCallCount) == 2
+
+                let urlRequest = httpClient.requests.last
+
+                expect(urlRequest?.url) == baseURL
+                expect(urlRequest?.httpMethod) == "POST"
+                expect(urlRequest?.httpBody).toNot(beNil())
+                expect(urlRequest?.allHTTPHeaderFields?["Accept"]) == "application/json"
+
+                if let bodyData = urlRequest?.httpBody, let body = String(data: bodyData, encoding: .utf8) {
+                    expect(body) == "[out:json];a query;out;"
                 }
             }
 

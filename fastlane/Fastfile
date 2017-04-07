@@ -8,7 +8,7 @@ end
 
 desc "Runs all the tests"
 lane :test do
-  scan(scheme: "SwiftOpenStreetMap")
   scan(scheme: "SwiftOpenStreetMac")
+  scan(scheme: "SwiftOpenStreetMap")
 end
 

@@ -41,6 +41,8 @@
 		897F0E231E96915B007BF224 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E211E96915B007BF224 /* Quick.framework */; };
 		897F0E261E969161007BF224 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E241E969161007BF224 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		897F0E271E969161007BF224 /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E251E969161007BF224 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		897F0E321E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897F0E311E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift */; };
+		897F0E331E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897F0E311E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift */; };
 		89C48CD61E9613D2002B107D /* SwiftOpenStreetMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C48CCC1E9613D2002B107D /* SwiftOpenStreetMap.framework */; };
 /* End PBXBuildFile section */
 
@@ -130,6 +132,7 @@
 		897F0E211E96915B007BF224 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		897F0E241E969161007BF224 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		897F0E251E969161007BF224 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
+		897F0E311E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverpassServiceIntegrationTest.swift; sourceTree = "<group>"; };
 		89C48CCC1E9613D2002B107D /* SwiftOpenStreetMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftOpenStreetMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C48CD51E9613D2002B107D /* SwiftOpenStreetMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftOpenStreetMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -203,6 +206,7 @@
 		897F0DC31E967FA0007BF224 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				897F0E2F1E96DCF8007BF224 /* Integration */,
 				897F0DC51E967FDB007BF224 /* Services */,
 				897F0DC41E967FD5007BF224 /* Models */,
 			);
@@ -294,6 +298,14 @@
 				897F0E1B1E969155007BF224 /* SwiftyJSON.framework */,
 			);
 			name = Mac;
+			sourceTree = "<group>";
+		};
+		897F0E2F1E96DCF8007BF224 /* Integration */ = {
+			isa = PBXGroup;
+			children = (
+				897F0E311E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift */,
+			);
+			path = Integration;
 			sourceTree = "<group>";
 		};
 		89C48CC21E9613D1002B107D = {
@@ -512,6 +524,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897F0E331E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift in Sources */,
 				897F0E0C1E969123007BF224 /* OverpassServiceTest.swift in Sources */,
 				897F0E0D1E969123007BF224 /* ModelsTest.swift in Sources */,
 			);
@@ -530,6 +543,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				897F0E321E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift in Sources */,
 				897F0DEC1E9681FE007BF224 /* OverpassServiceTest.swift in Sources */,
 				897F0DED1E968203007BF224 /* ModelsTest.swift in Sources */,
 			);
@@ -843,6 +857,7 @@
 				897F0E061E9690CA007BF224 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		897F0E071E9690CA007BF224 /* Build configuration list for PBXNativeTarget "SwiftOpenStreetMacTests" */ = {
 			isa = XCConfigurationList;
@@ -851,6 +866,7 @@
 				897F0E091E9690CA007BF224 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		89C48CC61E9613D1002B107D /* Build configuration list for PBXProject "SwiftOpenStreetMap" */ = {
 			isa = XCConfigurationList;
