@@ -13,7 +13,7 @@ class OverpassServiceIntegrationTest: QuickSpec {
         var subject: DefaultOverpassService!
 
         let baseURL = URL(string: "https://overpass-api.de/api/interpreter")!
-        let httpClient = URLSession.shared
+        let httpClient = URLSession(configuration: URLSessionConfiguration.default)
 
         beforeEach {
             subject = DefaultOverpassService(baseURL: baseURL, httpClient: httpClient)
