@@ -25,7 +25,7 @@ class OverpassServiceTest: QuickSpec {
         }
 
         describe("query()") {
-            var queryFuture: Future<Result<OverpassResponse, OverpassServiceError>>!
+            var queryFuture: Future<Result<Response, OverpassServiceError>>!
 
             beforeEach {
                 queryFuture = subject.query("a query")
@@ -108,7 +108,7 @@ class OverpassServiceTest: QuickSpec {
 
                 it("resolves the future after parsing the json") {
                     expect(queryFuture.value).toNot(beNil())
-                    expect(queryFuture.value?.value) == json.overpassResponse
+                    expect(queryFuture.value?.value) == json.Response
                 }
             }
 

@@ -5,7 +5,7 @@ import SwiftyJSON
 import Result
 
 public protocol OverpassService {
-    func query(_ query: String) -> Future<Result<OverpassResponse, OverpassServiceError>>
+    func query(_ query: String) -> Future<Result<Response, OverpassServiceError>>
 }
 
 public struct DefaultOverpassService: OverpassService {
@@ -17,12 +17,12 @@ public struct DefaultOverpassService: OverpassService {
         self.httpClient = httpClient
     }
 
-    public func query(_ query: String) -> Future<Result<OverpassResponse, OverpassServiceError>> {
-        return self.raw(query: query).map { result -> Result<OverpassResponse, OverpassServiceError> in
+    public func query(_ query: String) -> Future<Result<Response, OverpassServiceError>> {
+        return self.raw(query: query).map { result -> Result<Response, OverpassServiceError> in
             switch result {
             case .success(let json):
-                if let overpassResponse = json.overpassResponse {
-                    return .success(overpassResponse)
+                if let Response = json.Response {
+                    return .success(Response)
                 } else {
                     return .failure(.unknown)
                 }

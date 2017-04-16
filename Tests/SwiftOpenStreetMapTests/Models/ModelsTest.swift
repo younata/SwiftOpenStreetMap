@@ -19,7 +19,7 @@ class ModelsTest: QuickSpec {
             }
         }
 
-        describe("OverpassElement") {
+        describe("Element") {
             describe("init(json:)") {
                 it("works with type node") {
                     let json = JSON([
@@ -33,63 +33,149 @@ class ModelsTest: QuickSpec {
                         ]
                     ])
 
-                    let element = OverpassElement(
-                        type: .node,
+                    let element = Node(
                         id: 34,
                         location: Location(latitude: 7.125, longitude: 8.75),
                         tags: ["a": "tag", "other": "tag"]
                     )
 
-                    expect(json.overpassElement) == element
+                    expect(json.Element) == .node(element)
                 }
 
                 it("works with type way") {
+                    /*
+                     "id" : 480943143,
+                     "tags" : {
+                        "leisure" : "pitch",
+                        "sport" : "basketball"
+                     },
+                     "type" : "way",
+                     "nodes" : [
+                        4738881721,
+                        4738881722,
+                        4738881723,
+                        4738881724,
+                        4738881721
+                     ]
+                     */
                     let json = JSON([
                         "type": "way",
-                        "id": 34,
-                        "lat": 7.125,
-                        "lon": 8.75,
+                        "id": 35,
                         "tags": [
                             "a": "tag",
                             "other": "tag"
+                        ],
+                        "nodes": [
+                            21,
+                            22,
+                            23,
+                            24,
+                            21
                         ]
                     ])
 
-                    let element = OverpassElement(
-                        type: .way,
-                        id: 34,
-                        location: Location(latitude: 7.125, longitude: 8.75),
+                    let element = Way(
+                        id: 35,
+                        nodeIds: [21, 22, 23, 24, 21],
                         tags: ["a": "tag", "other": "tag"]
                     )
 
-                    expect(json.overpassElement) == element
-                }
-
-                it("works with type relation") {
-                    let json = JSON([
-                        "type": "relation",
-                        "id": 34,
-                        "lat": 7.125,
-                        "lon": 8.75,
-                        "tags": [
-                            "a": "tag",
-                            "other": "tag"
-                        ]
-                    ])
-
-                    let element = OverpassElement(
-                        type: .relation,
-                        id: 34,
-                        location: Location(latitude: 7.125, longitude: 8.75),
-                        tags: ["a": "tag", "other": "tag"]
-                    )
-
-                    expect(json.overpassElement) == element
+                    expect(json.Element) == .way(element)
                 }
             }
         }
 
-        describe("OverpassResponse") {
+        describe("Way") {
+            describe("add(nodes:)") {
+                it("fills in the nodes property by correlating nodes with the nodeIds, in that order") {
+                    var way = Way(
+                        id: 35,
+                        nodeIds: [21, 22, 23, 24, 21],
+                        tags: ["a": "tag", "other": "tag"]
+                    )
+
+                    let nodes: [Node] = [
+                        Node(
+                            id: 21,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                        Node(
+                            id: 20,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                        Node(
+                            id: 24,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                        Node(
+                            id: 22,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                        Node(
+                            id: 23,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                    ]
+
+                    try! way.add(nodes: nodes)
+
+                    let expectedNodes = [
+                        Node(
+                            id: 21,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                        Node(
+                            id: 22,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                        Node(
+                            id: 23,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                        Node(
+                            id: 24,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                        Node(
+                            id: 21,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                    ]
+
+                    expect(way.nodes).to(equal(expectedNodes))
+                }
+
+                it("throws if it can't fully match up nodes with nodeIds") {
+                    var way = Way(
+                        id: 35,
+                        nodeIds: [21, 22, 23, 24, 21],
+                        tags: ["a": "tag", "other": "tag"]
+                    )
+
+                    let nodes: [Node] = [
+                        Node(
+                            id: 21,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                    ]
+
+                    expect { try way.add(nodes: nodes) }.to(throwError(Way.Error.insufficientData))
+                }
+            }
+        }
+
+        describe("Response") {
             describe("init(json:)") {
 
                 it("handles the case where version is an int") {
@@ -113,28 +199,27 @@ class ModelsTest: QuickSpec {
                             ],
                             [
                                 "type": "way",
-                                "id": 34,
-                                "lat": 7.125,
-                                "lon": 8.75,
+                                "id": 35,
                                 "tags": [
                                     "a": "tag",
                                     "other": "tag"
+                                ],
+                                "nodes": [
+                                    34
                                 ]
                             ]
                         ]
                     ])
 
-                    let nodeElement = OverpassElement(
-                        type: .node,
+                    let nodeElement = Node(
                         id: 34,
                         location: Location(latitude: 7.125, longitude: 8.75),
                         tags: ["a": "tag", "other": "tag"]
                     )
 
-                    let wayElement = OverpassElement(
-                        type: .way,
-                        id: 34,
-                        location: Location(latitude: 7.125, longitude: 8.75),
+                    let wayElement = Way(
+                        id: 35,
+                        nodes: [nodeElement],
                         tags: ["a": "tag", "other": "tag"]
                     )
 
@@ -145,15 +230,15 @@ class ModelsTest: QuickSpec {
 
                     let date = dateFormatter.date(from: "2017-04-03T00:00:00Z")!
 
-                    let response = OverpassResponse(
+                    let response = Response(
                         version: "1.0",
                         generator: "A Generator",
                         timestamp: date,
                         copyright: "Copyright whoever",
-                        elements: [nodeElement, wayElement]
+                        elements: [.node(nodeElement), .way(wayElement)]
                     )
                     
-                    expect(json.overpassResponse) == response
+                    expect(json.Response) == response
                 }
 
                 it("handles the case where version is a double") {
@@ -186,28 +271,27 @@ class ModelsTest: QuickSpec {
                             ],
                             [
                                 "type": "way",
-                                "id": 34,
-                                "lat": 7.125,
-                                "lon": 8.75,
+                                "id": 35,
                                 "tags": [
                                     "a": "tag",
                                     "other": "tag"
+                                ],
+                                "nodes": [
+                                    34
                                 ]
                             ]
                         ]
                     ])
 
-                    let nodeElement = OverpassElement(
-                        type: .node,
+                    let nodeElement = Node(
                         id: 34,
                         location: Location(latitude: 7.125, longitude: 8.75),
                         tags: ["a": "tag", "other": "tag"]
                     )
 
-                    let wayElement = OverpassElement(
-                        type: .way,
-                        id: 34,
-                        location: Location(latitude: 7.125, longitude: 8.75),
+                    let wayElement = Way(
+                        id: 35,
+                        nodes: [nodeElement],
                         tags: ["a": "tag", "other": "tag"]
                     )
 
@@ -218,15 +302,15 @@ class ModelsTest: QuickSpec {
 
                     let date = dateFormatter.date(from: "2017-04-03T00:00:00Z")!
 
-                    let response = OverpassResponse(
+                    let response = Response(
                         version: "0.6",
                         generator: "A Generator",
                         timestamp: date,
                         copyright: "Copyright whoever",
-                        elements: [nodeElement, wayElement]
+                        elements: [.node(nodeElement), .way(wayElement)]
                     )
 
-                    expect(json.overpassResponse) == response
+                    expect(json.Response) == response
                 }
 
                 it("handles the case where version is a string") {
@@ -250,28 +334,27 @@ class ModelsTest: QuickSpec {
                             ],
                             [
                                 "type": "way",
-                                "id": 34,
-                                "lat": 7.125,
-                                "lon": 8.75,
+                                "id": 35,
                                 "tags": [
                                     "a": "tag",
                                     "other": "tag"
+                                ],
+                                "nodes": [
+                                    34
                                 ]
                             ]
                         ]
                     ])
 
-                    let nodeElement = OverpassElement(
-                        type: .node,
+                    let nodeElement = Node(
                         id: 34,
                         location: Location(latitude: 7.125, longitude: 8.75),
                         tags: ["a": "tag", "other": "tag"]
                     )
 
-                    let wayElement = OverpassElement(
-                        type: .way,
-                        id: 34,
-                        location: Location(latitude: 7.125, longitude: 8.75),
+                    let wayElement = Way(
+                        id: 35,
+                        nodes: [nodeElement],
                         tags: ["a": "tag", "other": "tag"]
                     )
 
@@ -282,15 +365,15 @@ class ModelsTest: QuickSpec {
 
                     let date = dateFormatter.date(from: "2017-04-03T00:00:00Z")!
 
-                    let response = OverpassResponse(
+                    let response = Response(
                         version: "0.6",
                         generator: "A Generator",
                         timestamp: date,
                         copyright: "Copyright whoever",
-                        elements: [nodeElement, wayElement]
+                        elements: [.node(nodeElement), .way(wayElement)]
                     )
 
-                    expect(json.overpassResponse) == response
+                    expect(json.Response) == response
                 }
             }
         }
