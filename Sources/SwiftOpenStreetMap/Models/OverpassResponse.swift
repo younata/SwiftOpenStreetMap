@@ -32,7 +32,16 @@ public struct Response: Equatable {
         self.copyright = copyright
 
         let nodes = elements.flatMap { $0.asNode() }
-        let ways = elements.flatMap { try! $0.asWay()?.with(nodes: nodes) }
+        let ways: [Way] = elements.flatMap {
+            guard let way = $0.asWay() else { return nil }
+
+            do {
+                return try way.with(nodes: nodes)
+            } catch {
+                print("unable to convert way!")
+                return way
+            }
+        }
 
         self.elements = nodes.map { Element.node($0) } + ways.map { Element.way($0) }
     }
