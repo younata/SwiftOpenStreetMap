@@ -122,7 +122,7 @@ class ModelsTest: QuickSpec {
                         ),
                     ]
 
-                    try! way.add(nodes: nodes)
+                    way.add(nodes: nodes)
 
                     let expectedNodes = [
                         Node(
@@ -155,7 +155,7 @@ class ModelsTest: QuickSpec {
                     expect(way.nodes).to(equal(expectedNodes))
                 }
 
-                it("throws if it can't fully match up nodes with nodeIds") {
+                it("tries it's best if it can't fully match up nodes with nodeIds") {
                     var way = Way(
                         id: 35,
                         nodeIds: [21, 22, 23, 24, 21],
@@ -170,7 +170,22 @@ class ModelsTest: QuickSpec {
                         ),
                     ]
 
-                    expect { try way.add(nodes: nodes) }.to(throwError(Way.Error.insufficientData))
+                    way.add(nodes: nodes)
+
+                    let expectedNodes = [
+                        Node(
+                            id: 21,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                        Node(
+                            id: 21,
+                            location: Location(latitude: 7.125, longitude: 8.75),
+                            tags: ["a": "tag", "other": "tag"]
+                        ),
+                    ]
+
+                    expect(way.nodes).to(equal(expectedNodes))
                 }
             }
         }

@@ -38,7 +38,7 @@ public struct Response: Equatable {
             do {
                 return try way.with(nodes: nodes)
             } catch {
-                print("unable to convert way!")
+                print("unable to add nodes to way")
                 return way
             }
         }
@@ -91,27 +91,21 @@ public struct Way: Equatable {
     public var nodeIds: [Int]
     public var tags: [String: String]
 
-    public enum Error: Swift.Error {
-        case insufficientData
-    }
-
     public private(set) var nodes: [Node] = []
 
-    public mutating func add(nodes: [Node]) throws {
+    public mutating func add(nodes: [Node]) {
         self.nodes = []
         for id in self.nodeIds {
             if let node = nodes.first(where: { $0.id == id }) {
                 self.nodes.append(node)
-            } else {
-                throw Error.insufficientData
             }
         }
     }
 
-    fileprivate func with(nodes: [Node]) throws -> Way {
+    fileprivate func with(nodes: [Node]) -> Way {
         var way = Way(id: self.id, nodeIds: self.nodeIds, tags: self.tags)
 
-        try way.add(nodes: nodes)
+        way.add(nodes: nodes)
 
         return way
     }
