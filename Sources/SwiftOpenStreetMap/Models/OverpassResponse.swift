@@ -124,7 +124,7 @@ public struct Location: Equatable {
 }
 
 extension JSON {
-    var overpassResponse: OverpassResponse? { return OverpassResponse(json: self) }
-    var overpassElement: OverpassElement? { return OverpassElement(json: self) }
-    var location: Location? { return Location(json: self) }
+    public var overpassResponse: OverpassResponse? { return OverpassResponse(json: self) }
+    public var overpassElement: OverpassElement? { return OverpassElement(json: self) }
+    public var location: Location? { return Location(json: self) }
 }

@@ -5,6 +5,7 @@ import SwiftyJSON
 import Result
 
 public protocol OverpassService {
+    func query(_ query: String) -> Future<Result<OverpassResponse, OverpassServiceError>>
 }
 
 public struct DefaultOverpassService: OverpassService {
@@ -17,11 +18,26 @@ public struct DefaultOverpassService: OverpassService {
     }
 
     public func query(_ query: String) -> Future<Result<OverpassResponse, OverpassServiceError>> {
+        return self.raw(query: query).map { result -> Result<OverpassResponse, OverpassServiceError> in
+            switch result {
+            case .success(let json):
+                if let overpassResponse = json.overpassResponse {
+                    return .success(overpassResponse)
+                } else {
+                    return .failure(.unknown)
+                }
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
+    }
+
+    public func raw(query: String) -> Future<Result<JSON, OverpassServiceError>> {
         var request = URLRequest(url: self.baseURL)
         request.httpMethod = "POST"
         request.httpBody = self.format(query: query).data(using: .utf8)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        return self.httpClient.request(request).map { result -> Result<OverpassResponse, OverpassServiceError> in
+        return self.httpClient.request(request).map { result -> Result<JSON, OverpassServiceError> in
             switch result {
             case .success(let response):
                 guard let status = response.status else {
@@ -29,12 +45,7 @@ public struct DefaultOverpassService: OverpassService {
                 }
                 switch (status) {
                 case .ok:
-                    let json = JSON(data: response.body)
-                    if let overpassResponse = json.overpassResponse {
-                        return .success(overpassResponse)
-                    } else {
-                        return .failure(.unknown)
-                    }
+                    return .success(JSON(data: response.body))
                 case .badRequest:
                     return .failure(.syntax(query))
                 case .tooManyRequests:
