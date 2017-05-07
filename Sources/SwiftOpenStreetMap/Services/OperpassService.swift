@@ -6,6 +6,7 @@ import Result
 
 public protocol OverpassService {
     func query(_ query: String) -> Future<Result<Response, OverpassServiceError>>
+    func raw(query: String) -> Future<Result<JSON, OverpassServiceError>>
 }
 
 public struct DefaultOverpassService: OverpassService {

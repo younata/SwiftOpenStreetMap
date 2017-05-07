@@ -35,12 +35,7 @@ public struct Response: Equatable {
         let ways: [Way] = elements.flatMap {
             guard let way = $0.asWay() else { return nil }
 
-            do {
-                return try way.with(nodes: nodes)
-            } catch {
-                print("unable to add nodes to way")
-                return way
-            }
+            return way.with(nodes: nodes)
         }
 
         self.elements = nodes.map { Element.node($0) } + ways.map { Element.way($0) }

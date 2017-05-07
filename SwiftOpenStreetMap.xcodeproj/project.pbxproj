@@ -44,6 +44,10 @@
 		897F0E321E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897F0E311E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift */; };
 		897F0E331E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897F0E311E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift */; };
 		89C48CD61E9613D2002B107D /* SwiftOpenStreetMap.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 89C48CCC1E9613D2002B107D /* SwiftOpenStreetMap.framework */; };
+		89DB96131EBE628600446E2B /* QueryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB96121EBE628600446E2B /* QueryBuilder.swift */; };
+		89DB96141EBE628600446E2B /* QueryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB96121EBE628600446E2B /* QueryBuilder.swift */; };
+		89DB96161EBE64E600446E2B /* QueryBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB96151EBE64E600446E2B /* QueryBuilderTest.swift */; };
+		89DB96171EBE64E600446E2B /* QueryBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB96151EBE64E600446E2B /* QueryBuilderTest.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +139,8 @@
 		897F0E311E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverpassServiceIntegrationTest.swift; sourceTree = "<group>"; };
 		89C48CCC1E9613D2002B107D /* SwiftOpenStreetMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftOpenStreetMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		89C48CD51E9613D2002B107D /* SwiftOpenStreetMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftOpenStreetMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		89DB96121EBE628600446E2B /* QueryBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryBuilder.swift; sourceTree = "<group>"; };
+		89DB96151EBE64E600446E2B /* QueryBuilderTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QueryBuilderTest.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -226,6 +232,7 @@
 			isa = PBXGroup;
 			children = (
 				897F0DC61E967FFE007BF224 /* OverpassServiceTest.swift */,
+				89DB96151EBE64E600446E2B /* QueryBuilderTest.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -242,6 +249,7 @@
 			isa = PBXGroup;
 			children = (
 				897F0DCE1E968042007BF224 /* OperpassService.swift */,
+				89DB96121EBE628600446E2B /* QueryBuilder.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -516,6 +524,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				897F0E0B1E96911F007BF224 /* OperpassService.swift in Sources */,
+				89DB96141EBE628600446E2B /* QueryBuilder.swift in Sources */,
 				897F0E0A1E96911F007BF224 /* OverpassResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -526,6 +535,7 @@
 			files = (
 				897F0E331E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift in Sources */,
 				897F0E0C1E969123007BF224 /* OverpassServiceTest.swift in Sources */,
+				89DB96171EBE64E600446E2B /* QueryBuilderTest.swift in Sources */,
 				897F0E0D1E969123007BF224 /* ModelsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,6 +545,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				897F0DCF1E968042007BF224 /* OperpassService.swift in Sources */,
+				89DB96131EBE628600446E2B /* QueryBuilder.swift in Sources */,
 				897F0DCD1E96803A007BF224 /* OverpassResponse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -545,6 +556,7 @@
 			files = (
 				897F0E321E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift in Sources */,
 				897F0DEC1E9681FE007BF224 /* OverpassServiceTest.swift in Sources */,
+				89DB96161EBE64E600446E2B /* QueryBuilderTest.swift in Sources */,
 				897F0DED1E968203007BF224 /* ModelsTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
