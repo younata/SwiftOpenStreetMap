@@ -15,14 +15,19 @@ public struct Response: Equatable {
     public var timestamp: Date
     public var copyright: String
 
-    public var elements: [SwiftOpenStreetMap.Element]
+    public var ways: [Way] = [Way]()
+    public var nodes: [Node] = [Node]()
+    lazy public var elements: [SwiftOpenStreetMap.Element] = {
+        return self.nodes.map { Element.node($0) } + self.ways.map { Element.way($0) }
+    }()
 
     public static func == (lhs: Response, rhs: Response) -> Bool {
         return lhs.version == rhs.version &&
             lhs.generator == rhs.generator &&
             lhs.timestamp == rhs.timestamp &&
             lhs.copyright == rhs.copyright &&
-            lhs.elements == rhs.elements
+            lhs.ways == rhs.ways &&
+            lhs.nodes == rhs.nodes
     }
 
     public init(version: String, generator: String, timestamp: Date, copyright: String, elements: [Element]) {
@@ -30,15 +35,11 @@ public struct Response: Equatable {
         self.generator = generator
         self.timestamp = timestamp
         self.copyright = copyright
-
-        let nodes = elements.flatMap { $0.asNode() }
-        let ways: [Way] = elements.flatMap {
+        self.nodes = elements.flatMap { $0.asNode() }
+        self.ways = elements.flatMap {
             guard let way = $0.asWay() else { return nil }
-
             return way.with(nodes: nodes)
         }
-
-        self.elements = nodes.map { Element.node($0) } + ways.map { Element.way($0) }
     }
 
     public init?(json: JSON) {
