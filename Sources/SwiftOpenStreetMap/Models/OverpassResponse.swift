@@ -158,20 +158,20 @@ public enum Element: Equatable {
 
     fileprivate init?(json: JSON) {
         guard let jsonType = json["type"].string,
-            let id = json["id"].int,
-            let jsonTags = json["tags"].dictionary else {
+            let id = json["id"].int else {
                 return nil
         }
 
         var tags: [String: String] = [:]
-        for (key, jsonVal) in jsonTags {
-            if let val = jsonVal.string {
-                tags[key] = val
-            } else {
-                return nil
+        if let jsonTags = json["tags"].dictionary {
+            for (key, jsonVal) in jsonTags {
+                if let val = jsonVal.string {
+                    tags[key] = val
+                } else {
+                    return nil
+                }
             }
         }
-
 
         switch jsonType {
         case "node":
