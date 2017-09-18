@@ -41,6 +41,23 @@ class ModelsTest: QuickSpec {
 
                     expect(json.Element) == .node(element)
                 }
+                
+                it("works with type node without tags") {
+                    let json = JSON([
+                        "type": "node",
+                        "id": 34,
+                        "lat": 7.125,
+                        "lon": 8.75
+                        ])
+                    
+                    let element = Node(
+                        id: 34,
+                        location: Location(latitude: 7.125, longitude: 8.75),
+                        tags: [:]
+                    )
+                    
+                    expect(json.Element) == .node(element)
+                }
 
                 it("works with type way") {
                     /*
@@ -118,7 +135,7 @@ class ModelsTest: QuickSpec {
                         Node(
                             id: 23,
                             location: Location(latitude: 7.125, longitude: 8.75),
-                            tags: ["a": "tag", "other": "tag"]
+                            tags: [:]
                         ),
                     ]
 
@@ -138,7 +155,7 @@ class ModelsTest: QuickSpec {
                         Node(
                             id: 23,
                             location: Location(latitude: 7.125, longitude: 8.75),
-                            tags: ["a": "tag", "other": "tag"]
+                            tags: [:]
                         ),
                         Node(
                             id: 24,
