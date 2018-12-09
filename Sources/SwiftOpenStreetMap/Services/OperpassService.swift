@@ -46,7 +46,11 @@ public struct DefaultOverpassService: OverpassService {
                 }
                 switch (status) {
                 case .ok:
-                    return .success(JSON(data: response.body))
+                    do {
+                        return .success(try JSON(data: response.body))
+                    } catch {
+                        return .failure(.unknown)
+                    }
                 case .badRequest:
                     return .failure(.syntax(query))
                 case .tooManyRequests:

@@ -99,6 +99,14 @@ class ModelsTest: QuickSpec {
 
                     expect(json.Element) == .way(element)
                 }
+
+                it("works with type relation (ways)") {
+
+                }
+
+                it("works with type relation (nodes)") {
+
+                }
             }
         }
 

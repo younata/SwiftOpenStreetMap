@@ -35,8 +35,8 @@ public struct Response: Equatable {
         self.generator = generator
         self.timestamp = timestamp
         self.copyright = copyright
-        self.nodes = elements.flatMap { $0.asNode() }
-        self.ways = elements.flatMap {
+        self.nodes = elements.compactMap { $0.asNode() }
+        self.ways = elements.compactMap {
             guard let way = $0.asWay() else { return nil }
             return way.with(nodes: nodes)
         }
@@ -58,7 +58,7 @@ public struct Response: Equatable {
                 return nil
         }
 
-        let elements = elementsArray.flatMap { $0.Element }
+        let elements = elementsArray.compactMap { $0.Element }
 
         self.init(version: version, generator: generator, timestamp: date, copyright: copyright, elements: elements)
     }
@@ -127,9 +127,20 @@ public struct Way: Equatable {
     }
 }
 
-public enum Element: Equatable {
+public struct Relation: Equatable {
+    public var id: Int
+    public var members: [Element]
+    public var tags: [String: String]
+
+    public static func == (lhs: Relation, rhs: Relation) -> Bool {
+        return false
+    }
+}
+
+public indirect enum Element: Equatable {
     case node(Node)
     case way(Way)
+    case relation(Element)
 
     public static func == (lhs: Element, rhs: Element) -> Bool {
         switch (lhs, rhs) {
@@ -179,7 +190,7 @@ public enum Element: Equatable {
             self = .node(Node(id: id, location: location, tags: tags))
         case "way":
             guard let jsonNodes = json["nodes"].array else { return nil }
-            let nodes = jsonNodes.flatMap { $0.int }
+            let nodes = jsonNodes.compactMap { $0.int }
             self = .way(Way(id: id, nodeIds: nodes, tags: tags))
         default:
             return nil
