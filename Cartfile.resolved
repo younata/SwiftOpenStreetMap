@@ -1,6 +1,0 @@
-github "SwiftyJSON/SwiftyJSON" "4.2.0"
-github "antitypical/Result" "4.0.0"
-github "cbguder/CBGPromise" "v0.5.0"
-github "quick/nimble" "v7.3.1"
-github "quick/quick" "v1.3.2"
-github "younata/FutureHTTP" "v0.1.8"
