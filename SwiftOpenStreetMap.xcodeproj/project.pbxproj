@@ -3,19 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		897F0DC01E967F60007BF224 /* SwiftOpenStreetMap.h in Headers */ = {isa = PBXBuildFile; fileRef = 897F0DBD1E967F60007BF224 /* SwiftOpenStreetMap.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		897F0DCD1E96803A007BF224 /* OverpassResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897F0DCC1E96803A007BF224 /* OverpassResponse.swift */; };
 		897F0DCF1E968042007BF224 /* OperpassService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897F0DCE1E968042007BF224 /* OperpassService.swift */; };
-		897F0DD61E9680A5007BF224 /* CBGPromise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0DD21E9680A5007BF224 /* CBGPromise.framework */; };
-		897F0DD71E9680A5007BF224 /* FutureHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0DD31E9680A5007BF224 /* FutureHTTP.framework */; };
-		897F0DD81E9680A5007BF224 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0DD41E9680A5007BF224 /* Result.framework */; };
-		897F0DD91E9680A5007BF224 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0DD51E9680A5007BF224 /* SwiftyJSON.framework */; };
-		897F0DDC1E9680B2007BF224 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0DDA1E9680B2007BF224 /* Nimble.framework */; };
-		897F0DDD1E9680B2007BF224 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0DDB1E9680B2007BF224 /* Quick.framework */; };
 		897F0DE51E9680D7007BF224 /* CBGPromise.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0DDF1E9680D7007BF224 /* CBGPromise.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		897F0DE61E9680D7007BF224 /* FutureHTTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0DE01E9680D7007BF224 /* FutureHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		897F0DE71E9680D7007BF224 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0DE11E9680D7007BF224 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -29,16 +23,10 @@
 		897F0E0B1E96911F007BF224 /* OperpassService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897F0DCE1E968042007BF224 /* OperpassService.swift */; };
 		897F0E0C1E969123007BF224 /* OverpassServiceTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897F0DC61E967FFE007BF224 /* OverpassServiceTest.swift */; };
 		897F0E0D1E969123007BF224 /* ModelsTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897F0DC81E96800B007BF224 /* ModelsTest.swift */; };
-		897F0E131E96913F007BF224 /* CBGPromise.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E0F1E96913F007BF224 /* CBGPromise.framework */; };
-		897F0E141E96913F007BF224 /* FutureHTTP.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E101E96913F007BF224 /* FutureHTTP.framework */; };
-		897F0E151E96913F007BF224 /* Result.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E111E96913F007BF224 /* Result.framework */; };
-		897F0E161E96913F007BF224 /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E121E96913F007BF224 /* SwiftyJSON.framework */; };
 		897F0E1C1E969155007BF224 /* CBGPromise.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E181E969155007BF224 /* CBGPromise.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		897F0E1D1E969155007BF224 /* FutureHTTP.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E191E969155007BF224 /* FutureHTTP.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		897F0E1E1E969155007BF224 /* Result.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E1A1E969155007BF224 /* Result.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		897F0E1F1E969155007BF224 /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E1B1E969155007BF224 /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		897F0E221E96915B007BF224 /* Nimble.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E201E96915B007BF224 /* Nimble.framework */; };
-		897F0E231E96915B007BF224 /* Quick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E211E96915B007BF224 /* Quick.framework */; };
 		897F0E261E969161007BF224 /* Nimble.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E241E969161007BF224 /* Nimble.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		897F0E271E969161007BF224 /* Quick.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 897F0E251E969161007BF224 /* Quick.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		897F0E321E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 897F0E311E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift */; };
@@ -48,6 +36,10 @@
 		89DB96141EBE628600446E2B /* QueryBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB96121EBE628600446E2B /* QueryBuilder.swift */; };
 		89DB96161EBE64E600446E2B /* QueryBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB96151EBE64E600446E2B /* QueryBuilderTest.swift */; };
 		89DB96171EBE64E600446E2B /* QueryBuilderTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89DB96151EBE64E600446E2B /* QueryBuilderTest.swift */; };
+		8B79A2F324430B020088A3D7 /* FutureHTTP in Frameworks */ = {isa = PBXBuildFile; productRef = 8B79A2F224430B020088A3D7 /* FutureHTTP */; };
+		8B79A2F624430B2F0088A3D7 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 8B79A2F524430B2F0088A3D7 /* SwiftyJSON */; };
+		8B79A2F924430B5A0088A3D7 /* Result in Frameworks */ = {isa = PBXBuildFile; productRef = 8B79A2F824430B5A0088A3D7 /* Result */; };
+		8B79A2FC24430B770088A3D7 /* CBGPromise in Frameworks */ = {isa = PBXBuildFile; productRef = 8B79A2FB24430B770088A3D7 /* CBGPromise */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -110,12 +102,6 @@
 		897F0DC81E96800B007BF224 /* ModelsTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ModelsTest.swift; sourceTree = "<group>"; };
 		897F0DCC1E96803A007BF224 /* OverpassResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverpassResponse.swift; sourceTree = "<group>"; };
 		897F0DCE1E968042007BF224 /* OperpassService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OperpassService.swift; sourceTree = "<group>"; };
-		897F0DD21E9680A5007BF224 /* CBGPromise.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CBGPromise.framework; path = Carthage/Build/iOS/CBGPromise.framework; sourceTree = "<group>"; };
-		897F0DD31E9680A5007BF224 /* FutureHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FutureHTTP.framework; path = Carthage/Build/iOS/FutureHTTP.framework; sourceTree = "<group>"; };
-		897F0DD41E9680A5007BF224 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/iOS/Result.framework; sourceTree = "<group>"; };
-		897F0DD51E9680A5007BF224 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
-		897F0DDA1E9680B2007BF224 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
-		897F0DDB1E9680B2007BF224 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/iOS/Quick.framework; sourceTree = "<group>"; };
 		897F0DDF1E9680D7007BF224 /* CBGPromise.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CBGPromise.framework; path = Carthage/Build/iOS/CBGPromise.framework; sourceTree = "<group>"; };
 		897F0DE01E9680D7007BF224 /* FutureHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FutureHTTP.framework; path = Carthage/Build/iOS/FutureHTTP.framework; sourceTree = "<group>"; };
 		897F0DE11E9680D7007BF224 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/iOS/Nimble.framework; sourceTree = "<group>"; };
@@ -124,16 +110,10 @@
 		897F0DE41E9680D7007BF224 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/iOS/SwiftyJSON.framework; sourceTree = "<group>"; };
 		897F0DF31E9690CA007BF224 /* SwiftOpenStreetMap.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SwiftOpenStreetMap.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		897F0DFB1E9690CA007BF224 /* SwiftOpenStreetMapTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftOpenStreetMapTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		897F0E0F1E96913F007BF224 /* CBGPromise.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CBGPromise.framework; path = Carthage/Build/Mac/CBGPromise.framework; sourceTree = "<group>"; };
-		897F0E101E96913F007BF224 /* FutureHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FutureHTTP.framework; path = Carthage/Build/Mac/FutureHTTP.framework; sourceTree = "<group>"; };
-		897F0E111E96913F007BF224 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
-		897F0E121E96913F007BF224 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
 		897F0E181E969155007BF224 /* CBGPromise.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CBGPromise.framework; path = Carthage/Build/Mac/CBGPromise.framework; sourceTree = "<group>"; };
 		897F0E191E969155007BF224 /* FutureHTTP.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FutureHTTP.framework; path = Carthage/Build/Mac/FutureHTTP.framework; sourceTree = "<group>"; };
 		897F0E1A1E969155007BF224 /* Result.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Result.framework; path = Carthage/Build/Mac/Result.framework; sourceTree = "<group>"; };
 		897F0E1B1E969155007BF224 /* SwiftyJSON.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftyJSON.framework; path = Carthage/Build/Mac/SwiftyJSON.framework; sourceTree = "<group>"; };
-		897F0E201E96915B007BF224 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
-		897F0E211E96915B007BF224 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		897F0E241E969161007BF224 /* Nimble.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Nimble.framework; path = Carthage/Build/Mac/Nimble.framework; sourceTree = "<group>"; };
 		897F0E251E969161007BF224 /* Quick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quick.framework; path = Carthage/Build/Mac/Quick.framework; sourceTree = "<group>"; };
 		897F0E311E96DD2D007BF224 /* OverpassServiceIntegrationTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OverpassServiceIntegrationTest.swift; sourceTree = "<group>"; };
@@ -148,10 +128,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				897F0E131E96913F007BF224 /* CBGPromise.framework in Frameworks */,
-				897F0E141E96913F007BF224 /* FutureHTTP.framework in Frameworks */,
-				897F0E151E96913F007BF224 /* Result.framework in Frameworks */,
-				897F0E161E96913F007BF224 /* SwiftyJSON.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,8 +136,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				897F0DFC1E9690CA007BF224 /* SwiftOpenStreetMap.framework in Frameworks */,
-				897F0E221E96915B007BF224 /* Nimble.framework in Frameworks */,
-				897F0E231E96915B007BF224 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,10 +143,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				897F0DD61E9680A5007BF224 /* CBGPromise.framework in Frameworks */,
-				897F0DD71E9680A5007BF224 /* FutureHTTP.framework in Frameworks */,
-				897F0DD81E9680A5007BF224 /* Result.framework in Frameworks */,
-				897F0DD91E9680A5007BF224 /* SwiftyJSON.framework in Frameworks */,
+				8B79A2F624430B2F0088A3D7 /* SwiftyJSON in Frameworks */,
+				8B79A2F924430B5A0088A3D7 /* Result in Frameworks */,
+				8B79A2FC24430B770088A3D7 /* CBGPromise in Frameworks */,
+				8B79A2F324430B020088A3D7 /* FutureHTTP in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -181,8 +155,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				89C48CD61E9613D2002B107D /* SwiftOpenStreetMap.framework in Frameworks */,
-				897F0DDC1E9680B2007BF224 /* Nimble.framework in Frameworks */,
-				897F0DDD1E9680B2007BF224 /* Quick.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,18 +238,6 @@
 		897F0DD11E9680A5007BF224 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				897F0E201E96915B007BF224 /* Nimble.framework */,
-				897F0E211E96915B007BF224 /* Quick.framework */,
-				897F0E0F1E96913F007BF224 /* CBGPromise.framework */,
-				897F0E101E96913F007BF224 /* FutureHTTP.framework */,
-				897F0E111E96913F007BF224 /* Result.framework */,
-				897F0E121E96913F007BF224 /* SwiftyJSON.framework */,
-				897F0DDA1E9680B2007BF224 /* Nimble.framework */,
-				897F0DDB1E9680B2007BF224 /* Quick.framework */,
-				897F0DD21E9680A5007BF224 /* CBGPromise.framework */,
-				897F0DD31E9680A5007BF224 /* FutureHTTP.framework */,
-				897F0DD41E9680A5007BF224 /* Result.framework */,
-				897F0DD51E9680A5007BF224 /* SwiftyJSON.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -411,6 +371,12 @@
 			dependencies = (
 			);
 			name = SwiftOpenStreetMap;
+			packageProductDependencies = (
+				8B79A2F224430B020088A3D7 /* FutureHTTP */,
+				8B79A2F524430B2F0088A3D7 /* SwiftyJSON */,
+				8B79A2F824430B5A0088A3D7 /* Result */,
+				8B79A2FB24430B770088A3D7 /* CBGPromise */,
+			);
 			productName = SwiftOpenStreetMap;
 			productReference = 89C48CCC1E9613D2002B107D /* SwiftOpenStreetMap.framework */;
 			productType = "com.apple.product-type.framework";
@@ -446,7 +412,6 @@
 				TargetAttributes = {
 					897F0DF21E9690CA007BF224 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9D456YCUH2;
 						ProvisioningStyle = Automatic;
 					};
 					897F0DFA1E9690CA007BF224 = {
@@ -456,7 +421,6 @@
 					};
 					89C48CCB1E9613D1002B107D = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 9D456YCUH2;
 						LastSwiftMigration = 0820;
 						ProvisioningStyle = Automatic;
 					};
@@ -472,9 +436,16 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = 89C48CC21E9613D1002B107D;
+			packageReferences = (
+				8B79A2F124430B020088A3D7 /* XCRemoteSwiftPackageReference "FutureHTTP" */,
+				8B79A2F424430B2F0088A3D7 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				8B79A2F724430B5A0088A3D7 /* XCRemoteSwiftPackageReference "Result" */,
+				8B79A2FA24430B770088A3D7 /* XCRemoteSwiftPackageReference "CBGPromise" */,
+			);
 			productRefGroup = 89C48CCD1E9613D2002B107D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -584,7 +555,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9D456YCUH2;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -595,13 +566,17 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.SwiftOpenStreetMap;
 				PRODUCT_NAME = SwiftOpenStreetMap;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -612,7 +587,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9D456YCUH2;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -623,13 +598,17 @@
 				FRAMEWORK_VERSION = A;
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.SwiftOpenStreetMap;
 				PRODUCT_NAME = SwiftOpenStreetMap;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -645,7 +624,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.test.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.SwiftOpenStreetMapTests;
 				PRODUCT_NAME = SwiftOpenStreetMapTests;
@@ -666,7 +649,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/Mac",
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.test.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.SwiftOpenStreetMapTests;
 				PRODUCT_NAME = SwiftOpenStreetMapTests;
@@ -766,7 +753,8 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -781,7 +769,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9D456YCUH2;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -791,12 +779,16 @@
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.SwiftOpenStreetMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
 		};
@@ -807,7 +799,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "";
 				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 9D456YCUH2;
+				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
@@ -817,11 +809,15 @@
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.SwiftOpenStreetMap;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 5.0;
 			};
 			name = Release;
 		};
@@ -835,7 +831,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.test.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.SwiftOpenStreetMapTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -852,7 +852,11 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				INFOPLIST_FILE = "Supporting Files/Info.test.plist";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.rachelbrindle.SwiftOpenStreetMapTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -908,6 +912,64 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8B79A2F124430B020088A3D7 /* XCRemoteSwiftPackageReference "FutureHTTP" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/younata/FutureHTTP";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.2.0;
+			};
+		};
+		8B79A2F424430B2F0088A3D7 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/swiftyjson/SwiftyJSON.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8B79A2F724430B5A0088A3D7 /* XCRemoteSwiftPackageReference "Result" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/antitypical/Result";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
+		8B79A2FA24430B770088A3D7 /* XCRemoteSwiftPackageReference "CBGPromise" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cbguder/CBGPromise";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8B79A2F224430B020088A3D7 /* FutureHTTP */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B79A2F124430B020088A3D7 /* XCRemoteSwiftPackageReference "FutureHTTP" */;
+			productName = FutureHTTP;
+		};
+		8B79A2F524430B2F0088A3D7 /* SwiftyJSON */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B79A2F424430B2F0088A3D7 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			productName = SwiftyJSON;
+		};
+		8B79A2F824430B5A0088A3D7 /* Result */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B79A2F724430B5A0088A3D7 /* XCRemoteSwiftPackageReference "Result" */;
+			productName = Result;
+		};
+		8B79A2FB24430B770088A3D7 /* CBGPromise */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8B79A2FA24430B770088A3D7 /* XCRemoteSwiftPackageReference "CBGPromise" */;
+			productName = CBGPromise;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 89C48CC31E9613D1002B107D /* Project object */;
 }

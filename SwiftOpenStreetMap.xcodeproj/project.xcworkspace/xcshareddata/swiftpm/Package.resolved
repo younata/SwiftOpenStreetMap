@@ -1,0 +1,43 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "CBGPromise",
+        "repositoryURL": "https://github.com/cbguder/CBGPromise",
+        "state": {
+          "branch": null,
+          "revision": "136a811a40a50cc1ed8656396cd31365aa72ac8e",
+          "version": "0.6.0"
+        }
+      },
+      {
+        "package": "FutureHTTP",
+        "repositoryURL": "https://github.com/younata/FutureHTTP",
+        "state": {
+          "branch": null,
+          "revision": "4e09f821bd21639acde7f38ee98e557cbad13c48",
+          "version": "1.2.0"
+        }
+      },
+      {
+        "package": "Result",
+        "repositoryURL": "https://github.com/antitypical/Result",
+        "state": {
+          "branch": null,
+          "revision": "12920a5c2595926efab9274d6003e29f503dbb66",
+          "version": "5.0.0"
+        }
+      },
+      {
+        "package": "SwiftyJSON",
+        "repositoryURL": "https://github.com/swiftyjson/SwiftyJSON.git",
+        "state": {
+          "branch": null,
+          "revision": "2b6054efa051565954e1d2b9da831680026cd768",
+          "version": "5.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
