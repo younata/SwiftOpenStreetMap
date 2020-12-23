@@ -1,6 +1,9 @@
 import Foundation
 import FutureHTTP
 import CBGPromise
+#if os(Linux)
+    import FoundationNetworking
+#endif
 
 public protocol OverpassService {
     func query(_ query: String) -> Future<Result<Response, OverpassServiceError>>

@@ -5,6 +5,10 @@ import Foundation
 import CBGPromise
 import FutureHTTP
 
+#if os(Linux)
+    import FoundationNetworking
+#endif
+
 @testable import SwiftOpenStreetMap
 
 class OverpassServiceIntegrationTest: QuickSpec {

@@ -41,21 +41,6 @@ public indirect enum Tag: Hashable {
         }
     }
 
-    public var hashValue: Int {
-        switch self {
-        case .hasKey(let key):
-            return 2 ^ key.hashValue
-        case .hasValue(key: let key, value: let value):
-            return 4 ^ key.hashValue ^ value.hashValue
-        case .matchesValue(key: let key, value: let value):
-            return 8 ^ key.hashValue ^ value.hashValue
-        case .matchesKeyAndValue(key: let key, value: let value):
-            return 16 ^ key.hashValue ^ value.hashValue
-        case .not(let tag):
-            return 32 ^ tag.hashValue
-        }
-    }
-
     public static func == (lhs: Tag, rhs: Tag) -> Bool {
         guard lhs.isValid() && rhs.isValid() else { return false }
 
