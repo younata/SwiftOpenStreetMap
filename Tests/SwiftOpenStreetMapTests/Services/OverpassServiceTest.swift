@@ -1,9 +1,7 @@
 import Quick
 import Nimble
 import Foundation
-import Result
 import CBGPromise
-import SwiftyJSON
 import FutureHTTP
 
 @testable import SwiftOpenStreetMap
@@ -64,37 +62,40 @@ class OverpassServiceTest: QuickSpec {
             }
 
             context("when the request succeeds with HTTP 200") {
-                let json = JSON([
+                let data = """
+                {
                     "version": "0.6",
                     "generator": "A Generator",
-                    "osm3s": [
+                    "osm3s": {
                         "timestamp_osm_base": "2017-04-03T00:00:00Z",
                         "copyright": "Copyright whoever",
-                    ],
+                    },
                     "elements": [
-                        [
+                        {
                             "type": "node",
                             "id": 34,
                             "lat": 7.125,
                             "lon": 8.75,
-                            "tags": [
+                            "tags": {
                                 "a": "tag",
                                 "other": "tag"
-                            ]
-                        ],
-                        [
-                            "type": "way",
-                            "id": 34,
+                            }
+                        },
+                        {
+                            "type": "node",
+                            "id": 35,
                             "lat": 7.125,
                             "lon": 8.75,
-                            "tags": [
+                            "nodes": [34],
+                            "tags": {
                                 "a": "tag",
                                 "other": "tag"
-                            ]
-                        ]
+                            }
+                        }
                     ]
-                ])
-                let data = try! json.rawData()
+                }
+                """.data(using: .utf8)!
+
                 beforeEach {
                     let promise = httpClient.requestPromises.last
                     let response = HTTPResponse(
@@ -108,7 +109,7 @@ class OverpassServiceTest: QuickSpec {
 
                 it("resolves the future after parsing the json") {
                     expect(queryFuture.value).toNot(beNil())
-                    expect(queryFuture.value?.value) == json.Response
+                    expect(queryFuture.value?.value).toNot(beNil())
                 }
             }
 
@@ -168,18 +169,18 @@ class OverpassServiceTest: QuickSpec {
 
             context("when the request fails") {
                 beforeEach {
-                    httpClient.requestPromises.last?.resolve(.failure(.unknown))
+                    httpClient.requestPromises.last?.resolve(.failure(.unknown("")))
                 }
 
                 it("forwards the error") {
                     expect(queryFuture.value).toNot(beNil())
-                    expect(queryFuture.value?.error) == OverpassServiceError.client(.unknown)
+                    expect(queryFuture.value?.error) == OverpassServiceError.client(.unknown(""))
                 }
             }
         }
 
         describe("raw(query:)") {
-            var queryFuture: Future<Result<JSON, OverpassServiceError>>!
+            var queryFuture: Future<Result<[String: Any], OverpassServiceError>>!
 
             beforeEach {
                 queryFuture = subject.raw(query: "a query")
@@ -218,7 +219,7 @@ class OverpassServiceTest: QuickSpec {
             }
 
             context("when the request succeeds with HTTP 200") {
-                let json = JSON([
+                let json = NSDictionary(dictionary: [
                     "version": "0.6",
                     "generator": "A Generator",
                     "osm3s": [
@@ -248,7 +249,9 @@ class OverpassServiceTest: QuickSpec {
                         ]
                     ]
                 ])
-                let data = try! json.rawData()
+
+                let data = try! JSONSerialization.data(withJSONObject: json, options: [])
+
                 beforeEach {
                     let promise = httpClient.requestPromises.last
                     let response = HTTPResponse(
@@ -262,7 +265,7 @@ class OverpassServiceTest: QuickSpec {
 
                 it("resolves the future after parsing the json") {
                     expect(queryFuture.value).toNot(beNil())
-                    expect(queryFuture.value?.value) == json
+                    expect(NSDictionary(dictionary: queryFuture.value?.value ?? [:])) == json
                 }
             }
 
@@ -322,12 +325,12 @@ class OverpassServiceTest: QuickSpec {
 
             context("when the request fails") {
                 beforeEach {
-                    httpClient.requestPromises.last?.resolve(.failure(.unknown))
+                    httpClient.requestPromises.last?.resolve(.failure(.unknown("")))
                 }
 
                 it("forwards the error") {
                     expect(queryFuture.value).toNot(beNil())
-                    expect(queryFuture.value?.error) == OverpassServiceError.client(.unknown)
+                    expect(queryFuture.value?.error) == OverpassServiceError.client(.unknown(""))
                 }
             }
         }

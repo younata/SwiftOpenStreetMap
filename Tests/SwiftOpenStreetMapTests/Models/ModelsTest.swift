@@ -1,7 +1,6 @@
 import Quick
 import Nimble
 import Foundation
-import SwiftyJSON
 
 @testable import SwiftOpenStreetMap
 
@@ -10,11 +9,11 @@ class ModelsTest: QuickSpec {
         describe("Location") {
             describe("init(json:)") {
                 it("works with lat and lon") {
-                    let json = JSON(["lat": 6.5, "lon": 7.5])
+                    let data = "{\"lat\": 6.5, \"lon\": 7.5}".data(using: .utf8)!
 
                     let location = Location(latitude: 6.5, longitude: 7.5)
 
-                    expect(json.location) == location
+                    expect { try JSONDecoder().decode(Location.self, from: data) }.to(equal(location))
                 }
             }
         }
@@ -22,16 +21,18 @@ class ModelsTest: QuickSpec {
         describe("Element") {
             describe("init(json:)") {
                 it("works with type node") {
-                    let json = JSON([
+                    let json = """
+                    {
                         "type": "node",
                         "id": 34,
                         "lat": 7.125,
                         "lon": 8.75,
-                        "tags": [
+                        "tags": {
                             "a": "tag",
                             "other": "tag"
-                        ]
-                    ])
+                        }
+                    }
+                    """.data(using: .utf8)!
 
                     let element = Node(
                         id: 34,
@@ -39,49 +40,52 @@ class ModelsTest: QuickSpec {
                         tags: ["a": "tag", "other": "tag"]
                     )
 
-                    expect(json.Element) == .node(element)
+                    expect { try JSONDecoder().decode(Element.self, from: json) }.to(equal(Element.node(element)))
                 }
                 
                 it("works with type node without tags") {
-                    let json = JSON([
+                    let json = """
+{
                         "type": "node",
                         "id": 34,
                         "lat": 7.125,
                         "lon": 8.75
-                        ])
+                    }
+""".data(using: .utf8)!
                     
                     let element = Node(
                         id: 34,
                         location: Location(latitude: 7.125, longitude: 8.75),
                         tags: [:]
                     )
-                    
-                    expect(json.Element) == .node(element)
+
+                    expect { try JSONDecoder().decode(Element.self, from: json) }.to(equal(Element.node(element)))
                 }
 
                 it("works with type way") {
                     /*
                      "id" : 480943143,
                      "tags" : {
-                        "leisure" : "pitch",
-                        "sport" : "basketball"
+                     "leisure" : "pitch",
+                     "sport" : "basketball"
                      },
                      "type" : "way",
                      "nodes" : [
-                        4738881721,
-                        4738881722,
-                        4738881723,
-                        4738881724,
-                        4738881721
+                     4738881721,
+                     4738881722,
+                     4738881723,
+                     4738881724,
+                     4738881721
                      ]
                      */
-                    let json = JSON([
+                    let json = """
+{
                         "type": "way",
                         "id": 35,
-                        "tags": [
+                        "tags": {
                             "a": "tag",
                             "other": "tag"
-                        ],
+                        },
                         "nodes": [
                             21,
                             22,
@@ -89,7 +93,8 @@ class ModelsTest: QuickSpec {
                             24,
                             21
                         ]
-                    ])
+                    }
+""".data(using: .utf8)!
 
                     let element = Way(
                         id: 35,
@@ -97,7 +102,7 @@ class ModelsTest: QuickSpec {
                         tags: ["a": "tag", "other": "tag"]
                     )
 
-                    expect(json.Element) == .way(element)
+                    expect { try JSONDecoder().decode(Element.self, from: json) }.to(equal(Element.way(element)))
                 }
 
                 it("works with type relation (ways)") {
@@ -219,37 +224,39 @@ class ModelsTest: QuickSpec {
             describe("init(json:)") {
 
                 it("handles the case where version is an int") {
-                    let json = JSON([
+                    let json = """
+                    {
                         "version": 1,
                         "generator": "A Generator",
-                        "osm3s": [
+                        "osm3s": {
                             "timestamp_osm_base": "2017-04-03T00:00:00Z",
                             "copyright": "Copyright whoever",
-                        ],
+                        },
                         "elements": [
-                            [
+                            {
                                 "type": "node",
                                 "id": 34,
                                 "lat": 7.125,
                                 "lon": 8.75,
-                                "tags": [
+                                "tags": {
                                     "a": "tag",
                                     "other": "tag"
-                                ]
-                            ],
-                            [
+                                }
+                            },
+                            {
                                 "type": "way",
                                 "id": 35,
-                                "tags": [
+                                "tags": {
                                     "a": "tag",
                                     "other": "tag"
-                                ],
+                                },
                                 "nodes": [
                                     34
                                 ]
-                            ]
+                            }
                         ]
-                    ])
+                    }
+                    """.data(using: .utf8)!
 
                     let nodeElement = Node(
                         id: 34,
@@ -277,8 +284,11 @@ class ModelsTest: QuickSpec {
                         copyright: "Copyright whoever",
                         elements: [.node(nodeElement), .way(wayElement)]
                     )
-                    
-                    expect(json.Response) == response
+
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(dateFormatter)
+
+                    expect { try decoder.decode(Response.self, from: json) }.to(equal(response))
                 }
 
                 it("handles the case where version is a double") {
@@ -291,37 +301,39 @@ class ModelsTest: QuickSpec {
                      },
                      "elements"
                      */
-                    let json = JSON([
+                    let json = """
+{
                         "version": 0.6,
                         "generator": "A Generator",
-                        "osm3s": [
+                        "osm3s": {
                             "timestamp_osm_base": "2017-04-03T00:00:00Z",
                             "copyright": "Copyright whoever",
-                        ],
+                        },
                         "elements": [
-                            [
+                            {
                                 "type": "node",
                                 "id": 34,
                                 "lat": 7.125,
                                 "lon": 8.75,
-                                "tags": [
+                                "tags": {
                                     "a": "tag",
                                     "other": "tag"
-                                ]
-                            ],
-                            [
+                                }
+                            },
+                            {
                                 "type": "way",
                                 "id": 35,
-                                "tags": [
+                                "tags": {
                                     "a": "tag",
                                     "other": "tag"
-                                ],
+                                },
                                 "nodes": [
                                     34
                                 ]
-                            ]
+                            }
                         ]
-                    ])
+                    }
+""".data(using: .utf8)!
 
                     let nodeElement = Node(
                         id: 34,
@@ -350,42 +362,47 @@ class ModelsTest: QuickSpec {
                         elements: [.node(nodeElement), .way(wayElement)]
                     )
 
-                    expect(json.Response) == response
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(dateFormatter)
+
+                    expect { try decoder.decode(Response.self, from: json) }.to(equal(response))
                 }
 
                 it("handles the case where version is a string") {
-                    let json = JSON([
+                    let json = """
+{
                         "version": "0.6",
                         "generator": "A Generator",
-                        "osm3s": [
+                        "osm3s": {
                             "timestamp_osm_base": "2017-04-03T00:00:00Z",
                             "copyright": "Copyright whoever",
-                        ],
+                        },
                         "elements": [
-                            [
+                            {
                                 "type": "node",
                                 "id": 34,
                                 "lat": 7.125,
                                 "lon": 8.75,
-                                "tags": [
+                                "tags": {
                                     "a": "tag",
                                     "other": "tag"
-                                ]
-                            ],
-                            [
+                                }
+                            },
+                            {
                                 "type": "way",
                                 "id": 35,
-                                "tags": [
+                                "tags": {
                                     "a": "tag",
                                     "other": "tag"
-                                ],
+                                },
                                 "nodes": [
                                     34
                                 ]
-                            ]
+                            }
                         ]
-                    ])
-
+                    }
+""".data(using: .utf8)!
+                    
                     let nodeElement = Node(
                         id: 34,
                         location: Location(latitude: 7.125, longitude: 8.75),
@@ -413,7 +430,10 @@ class ModelsTest: QuickSpec {
                         elements: [.node(nodeElement), .way(wayElement)]
                     )
 
-                    expect(json.Response) == response
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(dateFormatter)
+
+                    expect { try decoder.decode(Response.self, from: json) }.to(equal(response))
                 }
             }
         }

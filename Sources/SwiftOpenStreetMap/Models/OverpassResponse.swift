@@ -1,15 +1,6 @@
 import Foundation
-import SwiftyJSON
 
-private let dateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.locale = Locale(identifier: "en_US_POSIX")
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
-    dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
-    return dateFormatter
-}()
-
-public struct Response: Equatable {
+public struct Response: Decodable, Equatable {
     public var version: String
     public var generator: String
     public var timestamp: Date
@@ -42,26 +33,35 @@ public struct Response: Equatable {
         }
     }
 
-    public init?(json: JSON) {
+    enum CodingKeys : String, CodingKey {
+        case version
+        case generator
+        case osm3s
+        case elements
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
         let version: String
-        if let doubleVersion = json["version"].double {
+        if let doubleVersion = try? container.decode(Double.self, forKey: .version) {
             version = String(doubleVersion)
-        } else if let stringVersion = json["version"].string {
-            version = stringVersion
-        } else { return nil }
-        guard let generator = json["generator"].string,
-            let osm3s = json["osm3s"].dictionary,
-            let dateString = osm3s["timestamp_osm_base"]?.string,
-            let date = dateFormatter.date(from: dateString),
-            let copyright = osm3s["copyright"]?.string,
-            let elementsArray = json["elements"].array else {
-                return nil
+        } else {
+            version = try container.decode(String.self, forKey: .version)
         }
 
-        let elements = elementsArray.compactMap { $0.Element }
+        let generator = try container.decode(String.self, forKey: .generator)
+        let osm3s = try container.decode(OSM3S.self, forKey: .osm3s)
+        let timestamp = osm3s.timestamp_osm_base
+        let copyright = osm3s.copyright
 
-        self.init(version: version, generator: generator, timestamp: date, copyright: copyright, elements: elements)
+        let elements = try container.decode([Element].self, forKey: .elements)
+        self.init(version: version, generator: generator, timestamp: timestamp, copyright: copyright, elements: elements)
     }
+}
+
+private struct OSM3S: Decodable {
+    let timestamp_osm_base: Date
+    let copyright: String
 }
 
 public struct Node: Equatable {
@@ -137,10 +137,24 @@ public struct Relation: Equatable {
     }
 }
 
-public indirect enum Element: Equatable {
+public indirect enum Element: Decodable, Equatable {
     case node(Node)
     case way(Way)
     case relation(Element)
+
+    private enum ElementKind: String, Decodable {
+        case way
+        case node
+        // Relation is not yet supported.
+    }
+
+
+    enum CodingKeys : String, CodingKey {
+        case id
+        case type
+        case tags
+        case nodes
+    }
 
     public static func == (lhs: Element, rhs: Element) -> Bool {
         switch (lhs, rhs) {
@@ -167,38 +181,25 @@ public indirect enum Element: Equatable {
         return nil
     }
 
-    fileprivate init?(json: JSON) {
-        guard let jsonType = json["type"].string,
-            let id = json["id"].int else {
-                return nil
-        }
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
 
-        var tags: [String: String] = [:]
-        if let jsonTags = json["tags"].dictionary {
-            for (key, jsonVal) in jsonTags {
-                if let val = jsonVal.string {
-                    tags[key] = val
-                } else {
-                    return nil
-                }
-            }
-        }
+        let jsonType = try container.decode(ElementKind.self, forKey: .type)
+        let id = try container.decode(Int.self, forKey: .id)
+        let tags = try container.decodeIfPresent([String: String].self, forKey: .tags) ?? [:]
 
         switch jsonType {
-        case "node":
-            guard let location = json.location else { return nil }
+        case .node:
+            let location = try Location(from: decoder)
             self = .node(Node(id: id, location: location, tags: tags))
-        case "way":
-            guard let jsonNodes = json["nodes"].array else { return nil }
-            let nodes = jsonNodes.compactMap { $0.int }
+        case .way:
+            let nodes = try container.decode([Int].self, forKey: .nodes)
             self = .way(Way(id: id, nodeIds: nodes, tags: tags))
-        default:
-            return nil
         }
     }
 }
 
-public struct Location: Equatable {
+public struct Location: Decodable, Equatable {
     public var latitude: Double
     public var longitude: Double
 
@@ -206,22 +207,13 @@ public struct Location: Equatable {
         return lhs.latitude == rhs.latitude && lhs.longitude == rhs.longitude
     }
 
+    enum CodingKeys : String, CodingKey {
+        case latitude = "lat"
+        case longitude = "lon"
+    }
+
     public init(latitude: Double, longitude: Double) {
         self.latitude = latitude
         self.longitude = longitude
     }
-
-    fileprivate init?(json: JSON) {
-        guard let latitude = json["lat"].double,
-            let longitude = json["lon"].double else {
-                return nil
-        }
-        self.init(latitude: latitude, longitude: longitude)
-    }
-}
-
-extension JSON {
-    public var Response: SwiftOpenStreetMap.Response? { return SwiftOpenStreetMap.Response(json: self) }
-    public var Element: SwiftOpenStreetMap.Element? { return SwiftOpenStreetMap.Element(json: self) }
-    public var location: Location? { return Location(json: self) }
 }

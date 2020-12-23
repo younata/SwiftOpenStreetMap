@@ -1,30 +1,38 @@
 import Foundation
 import FutureHTTP
 import CBGPromise
-import SwiftyJSON
-import Result
 
 public protocol OverpassService {
     func query(_ query: String) -> Future<Result<Response, OverpassServiceError>>
-    func raw(query: String) -> Future<Result<JSON, OverpassServiceError>>
+    func raw(query: String) -> Future<Result<[String: Any], OverpassServiceError>>
 }
 
 public struct DefaultOverpassService: OverpassService {
     private let baseURL: URL
     private let httpClient: HTTPClient
 
+    private let dateFormatter: DateFormatter = {
+        let dateFormatter = DateFormatter()
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZZZZZ"
+        dateFormatter.timeZone = TimeZone(secondsFromGMT: 0)
+        return dateFormatter
+    }()
+
     public init(baseURL: URL, httpClient: HTTPClient) {
         self.baseURL = baseURL
         self.httpClient = httpClient
     }
 
-    public func query(_ query: String) -> Future<Result<Response, OverpassServiceError>> {
-        return self.raw(query: query).map { result -> Result<Response, OverpassServiceError> in
+    public func query(_ query: String) -> Future<Result<SwiftOpenStreetMap.Response, OverpassServiceError>> {
+        return self.data(query: query).map { (result: Result<Data, OverpassServiceError>) -> Result<Response, OverpassServiceError> in
             switch result {
-            case .success(let json):
-                if let Response = json.Response {
-                    return .success(Response)
-                } else {
+            case .success(let data):
+                let decoder = JSONDecoder()
+                decoder.dateDecodingStrategy = .formatted(self.dateFormatter)
+                do {
+                    return .success(try decoder.decode(Response.self, from: data))
+                } catch {
                     return .failure(.unknown)
                 }
             case .failure(let error):
@@ -33,12 +41,27 @@ public struct DefaultOverpassService: OverpassService {
         }
     }
 
-    public func raw(query: String) -> Future<Result<JSON, OverpassServiceError>> {
+    public func raw(query: String) -> Future<Result<[String: Any], OverpassServiceError>> {
+        return self.data(query: query).map { (result: Result<Data, OverpassServiceError>) -> Result<[String: Any], OverpassServiceError> in
+            switch result {
+            case .success(let data):
+                do {
+                    return .success(try JSONSerialization.jsonObject(with: data, options: []) as? [String: Any] ?? [:])
+                } catch {
+                    return .failure(.unknown)
+                }
+            case .failure(let error):
+                return .failure(error)
+            }
+        }
+    }
+
+    private func data(query: String) -> Future<Result<Data, OverpassServiceError>> {
         var request = URLRequest(url: self.baseURL)
         request.httpMethod = "POST"
         request.httpBody = self.format(query: query).data(using: .utf8)
         request.addValue("application/json", forHTTPHeaderField: "Accept")
-        return self.httpClient.request(request).map { result -> Result<JSON, OverpassServiceError> in
+        return self.httpClient.request(request).map { result -> Result<Data, OverpassServiceError> in
             switch result {
             case .success(let response):
                 guard let status = response.status else {
@@ -46,11 +69,7 @@ public struct DefaultOverpassService: OverpassService {
                 }
                 switch (status) {
                 case .ok:
-                    do {
-                        return .success(try JSON(data: response.body))
-                    } catch {
-                        return .failure(.unknown)
-                    }
+                    return .success(response.body)
                 case .badRequest:
                     return .failure(.syntax(query))
                 case .tooManyRequests:
