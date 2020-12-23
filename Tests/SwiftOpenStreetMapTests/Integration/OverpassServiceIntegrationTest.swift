@@ -3,9 +3,8 @@ import Nimble
 import Foundation
 
 import CBGPromise
-import Result
-
 import FutureHTTP
+
 @testable import SwiftOpenStreetMap
 
 class OverpassServiceIntegrationTest: QuickSpec {
