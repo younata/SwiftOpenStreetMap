@@ -17,7 +17,7 @@ let tags: Set<Tag> = [.hasKey("hello"), .hasValue(key: "good", value: "bye")]
 
 let query = nodeQuery(boundingBox: boundingBox, tags: tags)
 
-service.query(query).then { res: Result<Response, OverpassServiceError> in
+service.query(query).then { (res: Result<Response, OverpassServiceError>) in
     dump(res)
 }
 ```
